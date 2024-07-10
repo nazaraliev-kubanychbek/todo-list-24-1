@@ -1,10 +1,15 @@
 import './todoItem.css';
 
-const TodoItem = ({item}) => {
+const TodoItem = ({item, setKey}) => {
     return (
         <div className="todo-item">
             <div className="todo-item-left">
-                <input type="checkbox" />
+                <input type="checkbox"
+                onChange={()=>{
+                    setKey('completed', item.id)
+                }}
+                checked={item.completed}
+                />
                 <p className="todo-item-text">
                     {item.text}
                 </p>
@@ -12,8 +17,20 @@ const TodoItem = ({item}) => {
 
             <div className="todo-item-right">
                 <button>correct</button>
-                <button>important</button>
-                <button>delete</button>
+                <button
+                className={
+                    item.important
+                    ? 'important'
+                    : ''
+                }
+                onClick={()=>{
+                    setKey('important', item.id)
+                }}>important</button>
+                <button
+                onClick={()=>{
+                    setKey('deleted', item.id)
+                }}
+                >delete</button>
             </div>
 
         </div>

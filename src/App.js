@@ -7,17 +7,46 @@ import { useState, useEffect } from "react";
 function App() {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
+  const [status, setStatus] = useState('all');
 
   useEffect(()=>{
-    setList(data.filter((item)=>{
-      return !item.deleted
-    }))
-  }, [data])
+   switch( status){
+    case 'all':{
+      setList(data.filter((item)=>{
+        return !item.deleted
+      }))
+      break
+    }
+    case 'completed':{
+      setList(data.filter((item)=>{
+        return  item.completed &&  !item.deleted
+      }))
+      break
+    }
+    case 'important':{
+      setList(data.filter((item)=>{
+        return !item.deleted && item.important
+      }))
+      break
+    }
+    case 'trash':{
+      setList(data.filter((item)=>{
+        return item.deleted
+      }))
+      break
+    }
+    default:{
+      setList(data.filter((item)=>{
+        return !item.deleted && !item.completed
+      }))
+    }
+   }
+  }, [data, status])
   return (
     <div >
       <Header />
       <TodoForm data={data} setData={setData} />
-      <TodoList list={list} />
+      <TodoList list={list} data={data} setData={setData} setStatus={setStatus} status={status}/>
     </div>
   );
 }
