@@ -5,11 +5,16 @@ import './style.css';
 import { useState, useEffect } from "react";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(
+    localStorage.getItem('todo-list') === null
+    ? []
+    : JSON.parse(localStorage.getItem('todo-list'))
+  );
   const [list, setList] = useState([]);
   const [status, setStatus] = useState('all');
 
   useEffect(()=>{
+    localStorage.setItem('todo-list', JSON.stringify(data));
    switch( status){
     case 'all':{
       setList(data.filter((item)=>{

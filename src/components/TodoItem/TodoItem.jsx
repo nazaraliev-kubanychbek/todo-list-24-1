@@ -20,14 +20,17 @@ const TodoItem = ({ item, setKey, status, deleteTodo }) => {
           <>
             <button onClick={()=>{
                 setKey('correct', item.id)
-            }}>correct</button>
+            }}>
+              <i className="fa-solid fa-pen" ></i>
+              </button>
+
             <button
               className={item.important ? "important" : ""}
               onClick={() => {
                 setKey("important", item.id);
               }}
             >
-              important
+             <i className="fa-solid fa-circle-exclamation" ></i>
             </button>
           </>
         ) : (
@@ -36,7 +39,7 @@ const TodoItem = ({ item, setKey, status, deleteTodo }) => {
               deleteTodo(item.id);
             }}
           >
-            delete
+             <i className="fa-solid fa-trash" ></i>
           </button>
         )}
 
@@ -45,7 +48,7 @@ const TodoItem = ({ item, setKey, status, deleteTodo }) => {
             setKey("deleted", item.id);
           }}
         >
-          {status === "trash" ? "restore" : "delete"}
+          {status === "trash" ? <i className="fa-solid fa-trash-arrow-up" ></i> :   <i className="fa-solid fa-trash" ></i>}
         </button>
       </div>
     </div>

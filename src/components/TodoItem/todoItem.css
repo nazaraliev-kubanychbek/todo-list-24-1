@@ -13,6 +13,21 @@
     column-gap: 10px;
 }
 
+.todo-item-right button{
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #5e00b8;
+}
+
 .important{
-    background-color: green;
+  color: green!important;
+}
+
+
+.todo-item-correct{
+    padding: 15px 0;
+    display: flex;
+    column-gap: 10px;
 }
