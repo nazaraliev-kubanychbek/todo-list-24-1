@@ -45,7 +45,7 @@ function App() {
   return (
     <div >
       <Header />
-      <TodoForm data={data} setData={setData} />
+      <TodoForm setStatus={setStatus} status={status} data={data} setData={setData} />
       <TodoList list={list} data={data} setData={setData} setStatus={setStatus} status={status}/>
     </div>
   );
